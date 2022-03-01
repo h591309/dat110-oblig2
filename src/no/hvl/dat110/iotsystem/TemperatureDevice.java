@@ -22,7 +22,7 @@ public class TemperatureDevice {
 		sensor.connect();
 		// - publish the temperature(s)
 		for(int i = 0; i < COUNT; i++) {
-			sensor.publish("temperature", sn.read() + " - " + i);
+			sensor.publish("temperature", sn.read() + "");
 		}
 		// - disconnect from the broker
 		sensor.disconnect();

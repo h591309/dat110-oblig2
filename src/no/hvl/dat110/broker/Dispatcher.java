@@ -138,6 +138,7 @@ public class Dispatcher extends Stopable {
 		
 		storage.addSubscriber(user, topic);
 		Logger.log("onSubscribe:" + msg.toString());
+		System.out.println("Topic: " + topic + " - Subscribers: " + storage.getSubscribers(topic).size());
 
 		// TODO: subscribe user to the topic
 		// user and topic is contained in the subscribe message
@@ -152,7 +153,7 @@ public class Dispatcher extends Stopable {
 		
 		storage.removeSubscriber(user, topic);
 		Logger.log("onUnsubscribe:" + msg.toString());
-		
+		System.out.println("Topic: " + topic + " - Subscribers: " + storage.getSubscribers(topic).size());
 		// TODO: unsubscribe user to the topic
 		// user and topic is contained in the unsubscribe message
 		
@@ -169,6 +170,7 @@ public class Dispatcher extends Stopable {
 				ClientSession session = storage.getSession(s);
 				session.send(msg);
 			}
+			System.out.println("Published: " + msg.getMessage() + " - Topic : " + topic);
 		}
 		
 		Logger.log("onPublish:" + msg.toString());
