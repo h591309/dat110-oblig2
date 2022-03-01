@@ -3,10 +3,9 @@ package no.hvl.dat110.messages;
 public class SubscribeMsg extends Message {
 	
 	private String topic;
-	private String user;
 	
 	
-	public SubscribeMsg(String topic, String user) {
+	public SubscribeMsg(String user, String topic) {
 		super(MessageType.SUBSCRIBE, user);
 		this.topic = topic;
 	}
@@ -19,18 +18,12 @@ public class SubscribeMsg extends Message {
 		this.topic = topic;
 	}
 
-	public String getUser() {
-		return user;
-	}
-
-	public void setUser(String user) {
-		this.user = user;
-	}
-
 	@Override
 	public String toString() {
-		return "SubscribeMsg [topic=" + topic + ", user=" + user + "]";
+		return "SubscribeMsg [user=" + super.getUser() + "topic=" + topic + "]";
 	}
+
+
 	
 	
 	

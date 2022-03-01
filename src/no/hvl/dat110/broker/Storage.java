@@ -80,7 +80,7 @@ public class Storage {
 	}
 
 	public void createTopic(String topic) {
-		subscriptions.put(topic, new HashSet<String>());
+		subscriptions.put(topic, ConcurrentHashMap.newKeySet());
 		// TODO: create topic in the storage
 
 //		throw new UnsupportedOperationException(TODO.method());

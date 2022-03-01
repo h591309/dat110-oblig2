@@ -2,19 +2,11 @@ package no.hvl.dat110.messages;
 
 public class UnsubscribeMsg extends Message {
 
-	private String user;
 	private String topic;
+	
 	public UnsubscribeMsg(String user, String topic) {
 		super(MessageType.UNSUBSCRIBE, user);
 		this.topic = topic;
-	}
-	
-	public String getUser() {
-		return user;
-	}
-	
-	public void setUser(String user) {
-		this.user = user;
 	}
 	
 	public String getTopic() {
@@ -24,11 +16,13 @@ public class UnsubscribeMsg extends Message {
 	public void setTopic(String topic) {
 		this.topic = topic;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "UnsubscribeMsg [user=" + user + ", topic=" + topic + "]";
+		return "UnsubscribeMsg [user=" + super.getUser() + "topic=" + topic + "]";
 	}
+	
+
 	
 	// message sent from client to unsubscribe on a topic 
 

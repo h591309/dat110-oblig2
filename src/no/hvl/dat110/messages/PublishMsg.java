@@ -4,7 +4,6 @@ import no.hvl.dat110.common.TODO;
 
 public class PublishMsg extends Message {
 	
-	private String user;
 	private String topic;
 	private String message;
 	
@@ -21,14 +20,6 @@ public class PublishMsg extends Message {
 
 	// Constructor, get/set-methods, and toString method
 	// as described in the project text
-	
-	public String getUser() {
-		return user;
-	}
-
-	public void setUser(String user) {
-		this.user = user;
-	}
 
 	public String getTopic() {
 		return topic;
@@ -49,6 +40,6 @@ public class PublishMsg extends Message {
 
 	@Override
 	public String toString() {
-		return "PublishMsg [user=" + user + ", topic=" + topic + ", message=" + message + "]";
+		return "PublishMsg [user=" + super.getUser() + ", topic=" + topic + ", message=" + message + "]";
 	}
 }
