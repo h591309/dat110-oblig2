@@ -109,10 +109,13 @@ public class Dispatcher extends Stopable {
 	public void onCreateTopic(CreateTopicMsg msg) {
 
 		String topic = msg.getTopic();
-		if(!storage.getTopics().contains(topic))
+		if(!storage.getTopics().contains(topic)) {
 			storage.createTopic(topic);
-		
-		Logger.log("onCreateTopic:" + msg.toString());
+			Logger.log("onCreateTopic:" + msg.toString());
+		} else {
+			System.out.println("Non-critical error: Topic already exists!");
+		}
+			
 		// TODO: create the topic in the broker storage
 		// the topic is contained in the create topic message
 
@@ -135,11 +138,15 @@ public class Dispatcher extends Stopable {
 	public void onSubscribe(SubscribeMsg msg) {
 		String user = msg.getUser();
 		String topic = msg.getTopic();
+		if(storage.getTopics().contains(topic)) {
+			storage.addSubscriber(user, topic);
+			Logger.log("onSubscribe:" + msg.toString());
+			System.out.println("Topic: " + topic + " - Subscribers: " + storage.getSubscribers(topic).size());
+		} else {
+			System.out.println("Non-critical error: Topic does not exist!");
+		}
+			
 		
-		storage.addSubscriber(user, topic);
-		Logger.log("onSubscribe:" + msg.toString());
-		System.out.println("Topic: " + topic + " - Subscribers: " + storage.getSubscribers(topic).size());
-
 		// TODO: subscribe user to the topic
 		// user and topic is contained in the subscribe message
 		
@@ -151,9 +158,13 @@ public class Dispatcher extends Stopable {
 		String user = msg.getUser();
 		String topic = msg.getTopic();
 		
-		storage.removeSubscriber(user, topic);
-		Logger.log("onUnsubscribe:" + msg.toString());
-		System.out.println("Topic: " + topic + " - Subscribers: " + storage.getSubscribers(topic).size());
+		if(storage.getTopics().contains(topic)) {
+			storage.removeSubscriber(user, topic);
+			Logger.log("onUnsubscribe:" + msg.toString());
+			System.out.println("Topic: " + topic + " - Subscribers: " + storage.getSubscribers(topic).size());
+		} else {
+			System.out.println("Non-critical error: Topic does not exist!");
+		}
 		// TODO: unsubscribe user to the topic
 		// user and topic is contained in the unsubscribe message
 		
