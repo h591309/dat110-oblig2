@@ -1,6 +1,7 @@
 # dat110-oblig2
 
 Gruppe nr:4
+
 Gruppe medlemmer:
 - Sander Aasen Skønberg
 - Runar Straume
